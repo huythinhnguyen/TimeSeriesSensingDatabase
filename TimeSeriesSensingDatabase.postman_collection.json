@@ -1,0 +1,163 @@
+{
+  "info": {
+    "name": "TimeSeriesSensingDatabase API",
+    "description": "Collection for testing Time-series sensor data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "POST Measurement",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sensor_id\": \"sensor_001\",\n  \"timestamp\": \"2024-01-01T12:00:00Z\",\n  \"temperature\": 25.5,\n  \"conductivity\": 1500\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/measurements",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["measurements"]
+        }
+      }
+    },
+    {
+      "name": "GET Raw Measurements",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/measurements?sensor_id=sensor_001&start=2024-01-01T11:00:00Z&end=2024-01-01T13:00:00Z",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["measurements"],
+          "query": [
+            {
+              "key": "sensor_id",
+              "value": "sensor_001"
+            },
+            {
+              "key": "start",
+              "value": "2024-01-01T11:00:00Z"
+            },
+            {
+              "key": "end",
+              "value": "2024-01-01T13:00:00Z"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "GET Statistics (1-min resolution)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/statistics?sensor_id=sensor_001&start=2024-01-01T12:00:00Z&end=2024-01-01T12:30:00Z",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["statistics"],
+          "query": [
+            {
+              "key": "sensor_id",
+              "value": "sensor_001"
+            },
+            {
+              "key": "start",
+              "value": "2024-01-01T12:00:00Z"
+            },
+            {
+              "key": "end",
+              "value": "2024-01-01T12:30:00Z"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "GET Statistics (5-min resolution)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/statistics?sensor_id=sensor_001&start=2024-01-01T10:00:00Z&end=2024-01-01T14:00:00Z",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["statistics"],
+          "query": [
+            {
+              "key": "sensor_id",
+              "value": "sensor_001"
+            },
+            {
+              "key": "start",
+              "value": "2024-01-01T10:00:00Z"
+            },
+            {
+              "key": "end",
+              "value": "2024-01-01T14:00:00Z"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "POST Invalid Measurement (Missing Field)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sensor_id\": \"sensor_001\",\n  \"timestamp\": \"2024-01-01T12:00:00Z\",\n  \"temperature\": 25.5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/measurements",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["measurements"]
+        }
+      }
+    },
+    {
+      "name": "GET Measurements (Missing Sensor ID)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/measurements?start=2024-01-01T11:00:00Z&end=2024-01-01T13:00:00Z",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["measurements"],
+          "query": [
+            {
+              "key": "start",
+              "value": "2024-01-01T11:00:00Z"
+            },
+            {
+              "key": "end",
+              "value": "2024-01-01T13:00:00Z"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

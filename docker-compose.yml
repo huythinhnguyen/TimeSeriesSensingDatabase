@@ -1,0 +1,16 @@
+services:
+  timescaledb:
+    image: timescale/timescaledb:latest-pg15
+    container_name: sensors_timescaledb
+    environment:
+      POSTGRES_DB: my_lab
+      POSTGRES_USER: database_user
+      POSTGRES_PASSWORD: database_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - timescale_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  timescale_data:
